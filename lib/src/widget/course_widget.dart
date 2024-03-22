@@ -188,7 +188,6 @@ class _CourseWidgetState extends State<CourseWidget> {
   }
 
   String getFormattedInput() {
-    // Votre logique existante pour formater l'entrée
     if (input.length <= 2) {
       return "0," + input.padLeft(2, '0');
     } else {

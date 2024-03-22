@@ -118,14 +118,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                             height: 150,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Color.fromARGB(148, 26, 0, 0),
+                              color: const Color.fromARGB(148, 26, 0, 0),
                               border: Border.all(
                                   color: const Color.fromARGB(255, 45, 0, 0),
                                   width: 2),
                             ),
                             child: Stack(
                               children: [
-                                Align(
+                                const Align(
                                   alignment: Alignment.topCenter,
                                   child: Text(
                                     'Friend\'s profil',
@@ -141,7 +141,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   child: CircleAvatar(
                                       radius: 30,
                                       backgroundColor: Colors.blueGrey[700],
-                                      backgroundImage: NetworkImage(
+                                      backgroundImage: const NetworkImage(
                                           'https://www.missnumerique.com/blog/wp-content/uploads/photo-de-profil-conseils-engin-akyurt.jpg')),
                                 ),
                                 Positioned(
@@ -150,7 +150,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     child: CircleAvatar(
                                         radius: 30,
                                         backgroundColor: Colors.blueGrey[700],
-                                        backgroundImage: NetworkImage(
+                                        backgroundImage: const NetworkImage(
                                             'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'))),
                                 Positioned(
                                   left: 120,
@@ -158,7 +158,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   child: CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Colors.blueGrey[700],
-                                    backgroundImage: NetworkImage(
+                                    backgroundImage: const NetworkImage(
                                         'https://www.missnumerique.com/blog/wp-content/uploads/conseils-pour-une-photo-de-profil-reussie-mateus-campos-felipe.jpg'),
                                   ),
                                 ),
@@ -174,7 +174,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 height: 150,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromARGB(148, 26, 0, 0),
+                                  color: const Color.fromARGB(148, 26, 0, 0),
                                   border: Border.all(
                                     color: const Color.fromARGB(255, 45, 0, 0),
                                     width: 2,
@@ -195,7 +195,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Container(
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: Colors.white,
                                             ),
@@ -223,7 +223,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 height: 150,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Color.fromARGB(148, 26, 0, 0),
+                                  color: const Color.fromARGB(148, 26, 0, 0),
                                   border: Border.all(
                                       color:
                                           const Color.fromARGB(255, 45, 0, 0),
@@ -248,7 +248,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Container(
                                             width: 40,
                                             height: 40,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: Colors.white,
                                             ),
@@ -273,22 +273,186 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 10, left: 5),
                         child: Container(
-                          width: 290,
-                          height: 310,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Color.fromARGB(148, 26, 0, 0),
-                            border: Border.all(
-                                color: const Color.fromARGB(255, 45, 0, 0),
-                                width: 2),
-                          ),
-                          child: const Center(
-                            child: Text(
-                                'Récapitulatif des Transactions\n(Fictif)',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
+                            width: 290,
+                            height: 310,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color.fromARGB(148, 26, 0, 0),
+                              border: Border.all(
+                                  color: const Color.fromARGB(255, 45, 0, 0),
+                                  width: 2),
+                            ),
+                            child: const Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("BTC",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+0.5 BTC",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("ETH",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_downward_outlined,
+                                            color: Colors.red),
+                                        Text("-0.3 ETH",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    // Transaction 3
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("LTC",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+1.2 LTC",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("XRP",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_downward_outlined,
+                                            color: Colors.red),
+                                        Text("-5.0 XRP",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("DOGE",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+20.0 DOGE",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    // Transaction 6
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("ADA",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+15.0 ADA",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("SOL",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_downward_outlined,
+                                            color: Colors.red),
+                                        Text("-2.4 SOL",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("DOT",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+3.1 DOT",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("BNB",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_downward_outlined,
+                                            color: Colors.red),
+                                        Text("-1.0 BNB",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text("UNI",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10)),
+                                        Icon(Icons.arrow_upward_outlined,
+                                            color: Colors.green),
+                                        Text("+5.5 UNI",
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10)),
+                                      ],
+                                    ),
+                                  ],
+                                ))),
                       ),
                     ),
                   ],
