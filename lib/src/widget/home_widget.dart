@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -98,7 +99,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                   padding: EdgeInsets.only(left: 15, bottom: 5),
                   child: Text(
                     'Activities',
-                    textAlign: TextAlign.end,
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
@@ -109,57 +109,188 @@ class _HomeWidgetState extends State<HomeWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Expanded(
-                        flex: 3,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              width: 210,
-                              height: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: const Color.fromARGB(255, 57, 57, 57),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  width: 100,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color:
-                                        const Color.fromARGB(255, 57, 57, 57),
-                                  ),
-                                ),
-                                Container(
-                                  width: 100,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color:
-                                        const Color.fromARGB(255, 57, 57, 57),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        )),
-                    Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 10, left: 5),
-                          child: Container(
-                            width: 290,
-                            height: 310,
+                      flex: 3,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: 210,
+                            height: 150,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(255, 57, 57, 57),
+                              color: Color.fromARGB(148, 26, 0, 0),
+                              border: Border.all(
+                                  color: const Color.fromARGB(255, 45, 0, 0),
+                                  width: 2),
+                            ),
+                            child: Stack(
+                              children: [
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text(
+                                    'Friend\'s profil',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 20,
+                                  top: 40,
+                                  child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: Colors.blueGrey[700],
+                                      backgroundImage: NetworkImage(
+                                          'https://www.missnumerique.com/blog/wp-content/uploads/photo-de-profil-conseils-engin-akyurt.jpg')),
+                                ),
+                                Positioned(
+                                    left: 70,
+                                    top: 40,
+                                    child: CircleAvatar(
+                                        radius: 30,
+                                        backgroundColor: Colors.blueGrey[700],
+                                        backgroundImage: NetworkImage(
+                                            'https://a.storyblok.com/f/191576/1200x800/faa88c639f/round_profil_picture_before_.webp'))),
+                                Positioned(
+                                  left: 120,
+                                  top: 40,
+                                  child: CircleAvatar(
+                                    radius: 30,
+                                    backgroundColor: Colors.blueGrey[700],
+                                    backgroundImage: NetworkImage(
+                                        'https://www.missnumerique.com/blog/wp-content/uploads/conseils-pour-une-photo-de-profil-reussie-mateus-campos-felipe.jpg'),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        )),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Color.fromARGB(148, 26, 0, 0),
+                                  border: Border.all(
+                                    color: const Color.fromARGB(255, 45, 0, 0),
+                                    width: 2,
+                                  ),
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Positioned(
+                                      top: 40,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            width: 40,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.white,
+                                            ),
+                                            child: const Icon(
+                                              Icons.add,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          const Text(
+                                            'Add Friend',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: 100,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Color.fromARGB(148, 26, 0, 0),
+                                  border: Border.all(
+                                      color:
+                                          const Color.fromARGB(255, 45, 0, 0),
+                                      width: 2),
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Positioned(
+                                      top: 40,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Text(
+                                            'Add Cash',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Container(
+                                            width: 40,
+                                            height: 40,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.white,
+                                            ),
+                                            child: const Icon(
+                                              Icons.add,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10, left: 5),
+                        child: Container(
+                          width: 290,
+                          height: 310,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Color.fromARGB(148, 26, 0, 0),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 45, 0, 0),
+                                width: 2),
+                          ),
+                          child: const Center(
+                            child: Text(
+                                'Récapitulatif des Transactions\n(Fictif)',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],

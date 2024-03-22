@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:money_diagram/src/widget/contact_dropdown_widget.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 
 class CourseWidget extends StatefulWidget {
   const CourseWidget({Key? key}) : super(key: key);
@@ -10,6 +11,9 @@ class CourseWidget extends StatefulWidget {
 
 class _CourseWidgetState extends State<CourseWidget> {
   String input = '';
+  bool showSlider = false;
+  String selectedContact = '';
+
   void _onKeyPress(String value) {
     setState(() {
       if (value == "del" && input.isNotEmpty) {
@@ -17,6 +21,27 @@ class _CourseWidgetState extends State<CourseWidget> {
       } else if (RegExp(r'^\d$').hasMatch(value)) {
         input += value;
       }
+    });
+  }
+
+  void _resetState() {
+    setState(() {
+      input = '';
+      showSlider = false;
+      selectedContact = '';
+    });
+  }
+
+  void _showConfirmationAndReset(String amount, String recipient) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Le montant de $amount a été envoyé à $recipient.'),
+        duration: Duration(seconds: 4),
+      ),
+    );
+
+    Future.delayed(Duration(seconds: 4), () {
+      _resetState();
     });
   }
 
@@ -62,73 +87,98 @@ class _CourseWidgetState extends State<CourseWidget> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-                Expanded(
-                  child: GridView.count(
-                    padding: const EdgeInsets.all(30),
-                    crossAxisCount: 3, // Nombre de colonnes
-                    children: List.generate(9, (index) {
-                      return GestureDetector(
-                        onTap: () => _onKeyPress(
-                            '${index + 1}'), // Gère la touche appuyée
-                        child: Container(
-                          margin: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${index + 1}',
-                              style: const TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      );
-                    })
-                      ..add(
-                        GestureDetector(
-                          onTap: () {
-                            if (input.isNotEmpty) {
-                              setState(() {
-                                input = input.substring(0, input.length - 1);
-                              });
-                            }
-                          },
+                if (!showSlider)
+                  Expanded(
+                    child: GridView.count(
+                      padding: const EdgeInsets.all(40),
+                      crossAxisCount: 3,
+                      children: List.generate(9, (index) {
+                        return GestureDetector(
+                          onTap: () => _onKeyPress('${index + 1}'),
                           child: Container(
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Center(
-                              child: Icon(Icons.backspace, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      )
-                      ..add(
-                        GestureDetector(
-                          onTap: () => _onKeyPress('0'),
-                          child: Container(
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: const Center(
+                            child: Center(
                               child: Text(
-                                '0',
-                                style: TextStyle(
-                                    fontSize: 24,
+                                '${index + 1}',
+                                style: const TextStyle(
+                                    fontSize: 20,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
+                        );
+                      })
+                        ..add(
+                          GestureDetector(
+                            onTap: () {
+                              if (input.isNotEmpty) {
+                                setState(() {
+                                  input = input.substring(0, input.length - 1);
+                                });
+                              }
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Center(
+                                child:
+                                    Icon(Icons.backspace, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
+                        ..add(
+                          GestureDetector(
+                            onTap: () => _onKeyPress('0'),
+                            child: Container(
+                              margin: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  '0',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                        ..add(
+                          Container(
+                            margin: const EdgeInsets.all(10),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  showSlider = true;
+                                });
+                              },
+                              child: Text(
+                                'OK',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                    ),
                   ),
-                ),
+                if (showSlider)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SlideAction(
+                      elevation: 3,
+                      text: 'Glisser pour confirmer',
+                      onSubmit: () {
+                        _showConfirmationAndReset(
+                            getFormattedInput(), selectedContact);
+                      },
+                    ),
+                  ),
               ],
             ),
           ),
@@ -138,11 +188,10 @@ class _CourseWidgetState extends State<CourseWidget> {
   }
 
   String getFormattedInput() {
+    // Votre logique existante pour formater l'entrée
     if (input.length <= 2) {
-      // Assure que l'on a toujours deux chiffres après la virgule pour les entrées courtes
       return "0," + input.padLeft(2, '0');
     } else {
-      // Insère une virgule avant les deux derniers chiffres pour les entrées plus longues
       var part1 = input.substring(0, input.length - 2);
       var part2 = input.substring(input.length - 2);
       return "$part1,$part2";
